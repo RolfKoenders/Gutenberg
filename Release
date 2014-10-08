@@ -20,8 +20,13 @@ if [ $1 != "" ] && [ $2 != "" ] && [ $3 != "" ]; then
         exit 1;
     fi
 
+    if [ $3 == "" ]; then
+        RELEASE="$2"
+    else
+        RELEASE="$2-$3"
+    fi
+
     PROJECT_FOLDER=$1
-    RELEASE="$2-$3"
     RELEASE_BRANCH="release/$RELEASE"
 
     cd $PROJECT_FOLDER
