@@ -1,7 +1,9 @@
 
 # Gutenberg
-
 This bash script is used for releasing an Nodejs project/module. It follows the best practices of the git-flow.
+
+## What?
+It takes the project (via the path you specify) and creates the release branch. After that it removes the node_modules/ folder and does a fresh npm install. If that's done it creates the npm-shrinkwrap file and commits it to the release branch. The last stap is merging the release branch to the master branch and create a tag and push it to the server. Optionally it also does an npm publish
 
 ## Usage
 
