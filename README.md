@@ -30,4 +30,4 @@ Optional: -npm Add this parameter to also fire a 'npm publish' it reads the publ
 $ bash Release ~/Documents/projects/nirc-lib 1.0.2 Beta
 ```
 
-Enjoy!
+Enjoy releasing!
