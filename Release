@@ -1,0 +1,55 @@
+#!/bin/bash
+
+PROJECT_FOLDER=""
+RELEASE=""
+RELEASE_BRANCH=""
+
+if [ $1 != "" ] && [ $2 != "" ] && [ $3 != "" ]; then
+    echo ''
+    echo 'Release & Tag Node project'
+    echo ''
+    echo "Folder $1"
+    echo "Release version $2"
+    echo "Release name $3"
+    echo ''
+
+    echo 'Are you in the #develop branch and changed the version to the new version?'
+    echo 'Type 'yes' to proceed'
+    read prompt
+    if [ $prompt != "yes" ] || [ $prompt != "y" ]; then
+        exit 1;
+    fi
+
+    PROJECT_FOLDER=$1
+    RELEASE="$2-$3"
+    RELEASE_BRANCH="release/$RELEASE"
+
+    cd $PROJECT_FOLDER
+    git checkout -b $RELEASE_BRANCH
+
+    rm -rf node_modules
+    npm install
+    npm shrinkwrap
+
+    git add -A
+    git commit -m 'Added shrinkwrap'
+    git push origin $RELEASE_BRANCH
+
+    git checkout master
+    git merge -X theirs $RELEASE_BRANCH
+    git tag -a "$RELEASE" -m "Release $RELEASE"
+
+    git push origin master
+    git push origin $RELEASE
+
+    if [ "$4" == "-npm" ]; then
+        npm publish
+    fi
+
+    echo "Released v$RELEASE of $1"
+    exit 1;
+else
+    echo 'Not valid arguments passed in'
+    echo 'Usage: <folder/to/gitRepo> <version> <release name> [-npm for npm publish]' 
+    exit 1;
+fi
