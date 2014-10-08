@@ -3,7 +3,7 @@
 
 This bash script is used for releasing an Nodejs project/module. It follows the best practices of the git-flow.
 
-## Use
+## Usage
 
 To use it make sure the package.json file looks correct and you changed the version according to the new version you want to release.
 
@@ -20,9 +20,12 @@ $1 = Project folder, this folder needs to be a git repo
 $2 = Version of the release/tag
 Optional: $3 = Release name
 Optional: -npm Add this parameter to also fire a 'npm publish' it reads the publish settings from the package.json
+```
 
-example
+**example**
+
 ```
 $ bash Release ~/Documents/projects/nirc-lib 1.0.2 Beta
 ```
 
+Enjoy!
