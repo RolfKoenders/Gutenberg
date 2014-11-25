@@ -27,7 +27,7 @@ Optional: -npm Add this parameter to also fire a 'npm publish' it reads the publ
 **example**
 
 ```
-$ bash Release ~/Documents/projects/nirc-lib 1.0.2 Beta
+$ ./Release ~/Documents/projects/nirc-lib 1.0.2 Beta
 ```
 
 Enjoy releasing!
