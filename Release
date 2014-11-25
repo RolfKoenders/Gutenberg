@@ -13,13 +13,6 @@ if [ $1 != "" ] && [ $2 != "" ] && [ $3 != "" ]; then
     echo "Release name $3"
     echo ''
 
-    echo 'Are you in the #develop branch and changed the version to the new version?'
-    echo 'Type 'yes' to proceed'
-    read prompt
-    if [ $prompt != "yes" ] || [ $prompt != "y" ]; then
-        exit 1;
-    fi
-
     if [ $3 == "" ]; then
         RELEASE="$2"
     else
@@ -48,7 +41,8 @@ if [ $1 != "" ] && [ $2 != "" ] && [ $3 != "" ]; then
     git push origin $RELEASE
 
     if [ "$4" == "-npm" ]; then
-        npm publish
+        cd $PROJECT_FOLDER
+        npm publish --registry http://npmproxy.ice.local:8080
     fi
 
     echo "Released v$RELEASE of $1"
